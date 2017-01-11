@@ -1,0 +1,50 @@
+DROP DATABASE IF EXISTS db_crowne_plaza;
+
+CREATE DATABASE IF NOT EXISTS db_crowne_plaza;
+
+USE db_crowne_plaza;
+
+CREATE TABLE IF NOT EXISTS login(
+    login_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    login_username VARCHAR(26) UNIQUE NOT NULL,
+    login_password VARCHAR(101) NOT NULL,
+	jabatan ENUM('Manager', 'Receptionist') DEFAULT 'Manager' NOT NULL
+) ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS pelanggan(
+	idPelanggan INT(11) AUTO_INCREMENT PRIMARY KEY,
+	nama_pelanggan VARCHAR(50) NOT NULL,
+	alamat VARCHAR(100) NOT NULL,
+	noTelp INT(15) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS ruangan(
+	idRuangan INT(11) AUTO_INCREMENT PRIMARY KEY,
+	tipe_ruangan VARCHAR(50) NOT NULL,
+	kapasitas INT(11) NOT NULL,
+	harga INT(55) NOT NULL,
+	keterangan VARCHAR(150) NOT NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS pegawai(
+	idPegawai INT(11) AUTO_INCREMENT PRIMARY KEY,
+	nip INT(11) UNIQUE NOT NULL,
+	login_id INT(11) UNIQUE NOT NULL,
+	nama_pegawai VARCHAR(50) NOT NULL,
+	noTelp INT(15) NOT NULL,
+	
+	CONSTRAINT fk_pegawai_login FOREIGN KEY (login_id) REFERENCES login(login_id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS pemesanan(
+	kdPemesanan INT(11) AUTO_INCREMENT PRIMARY KEY,
+	idPegawai INT(11) NOT NULL,
+	idPelanggan INT(11) NOT NULL,
+	idRuangan INT(11) NOT NULL,
+	beginning_time DATE NOT NULL,
+	ending_time DATE NOT NULL,
+ 
+	CONSTRAINT fk_pegawai FOREIGN KEY (idPegawai) REFERENCES pegawai(idPegawai) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_pelanggan FOREIGN KEY (idPelanggan) REFERENCES pelanggan(idPelanggan) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_ruangan FOREIGN KEY (idRuangan) REFERENCES ruangan(idRuangan) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;

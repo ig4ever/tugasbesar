@@ -1,0 +1,32 @@
+=============================
+TO DO LISTT
+=============================
+*PENTING
++Anggota  :    //Risma
+	-> Insert
+	-> Update
+	-> Delete
+	-> Search
++Pegawai : //Rakhmat
+	-> Insert
+	-> Update
+	-> Delete
+	-> Search
++Buku    :      //Rakhmat
+	-> Insert
+	-> Update
+	-> Delete
+	-> Search
++Transaksi :
+	-> Multiple Value (kan kemaren cuma bisa minjem 1 buku ,nah  //Rizal
+	   kita bikin yang bisa minjam lebih dari 1 buku sekaligus)
+	-> Denda (Optional bisa berdasarkan tipe anggota atau default dari kita) //Budi
+	-> Pengembalian(bisa langsung beberapa atau satu saja) //Budi
+*OPTIONAL (Jika bagian penting di atas udah beres bisa di tambahin ini)
++Rekab    : 
+	-> data rekab (Buku,Pegawai,Anggota,Transaksi) //Faisal
+	-> Menggunakan JReport atau Export ke pdf atau Excel
++Login Pegawai //Risma
++Keamanan Database //Rizal
+	-> Backup database from program
+	-> Restore database from program
